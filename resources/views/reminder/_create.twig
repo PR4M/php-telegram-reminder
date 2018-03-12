@@ -1,0 +1,52 @@
+<form action="">
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="body">Reminder Name</label>
+            <input type="text" name="body" id="body" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="body">Send Frequency</label>
+            <select name="frequency" id="frequency" class="form-control">
+                {% for value, frequency in date.frequencies %}
+                    <option value="{{ value }}">{{ frequency }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="day">Send on</label>
+            <select name="day" id="day" class="form-control">
+                {% for value, day in date.days %}
+                    <option value="{{ value }}">{{ day }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="day">Date</label>
+            <select name="date" id="date" class="form-control">
+                {% for x in 1..31 %}
+                    <option value="{{ x }}">{{ date.ordinal(x) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="day">Date</label>
+            <select name="date" id="date" class="form-control">
+                {% for time in date.range('00:00', '24:00') %}
+                    <option value="{{ time.format('H:i') }}">{{ time.format('H:i') }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+    <button type="submit" class="btn btn-primary">Add Reminder</button>
+</form>
