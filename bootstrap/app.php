@@ -29,11 +29,20 @@ $app = new Slim\App([
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => ''
+        ],
+
+        'telegram' => [
+            'token' => getenv('TELEGRAM_TOKEN'),
+            'chat_id' => getenv('TELEGRAM_CHAT_ID')
         ]
     ],
 ]);
 
 $container = $app->getContainer();
+
+$container['guzzle'] = function () {
+    return new GuzzleHttp\Client;
+};
 
 $capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container['settings']['db']);
