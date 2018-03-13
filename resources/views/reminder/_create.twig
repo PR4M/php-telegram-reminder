@@ -1,4 +1,4 @@
-<form action="">
+<form action="{{ path_for('reminders.store') }}" method="post">
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
@@ -20,6 +20,7 @@
         <div class="form-group">
             <label for="day">Send on</label>
             <select name="day" id="day" class="form-control">
+                <option value="">Select</option>
                 {% for value, day in date.days %}
                     <option value="{{ value }}">{{ day }}</option>
                 {% endfor %}
@@ -28,8 +29,9 @@
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            <label for="day">Date</label>
+            <label for="date">Date</label>
             <select name="date" id="date" class="form-control">
+                <option value="">Select</option>
                 {% for x in 1..31 %}
                     <option value="{{ x }}">{{ date.ordinal(x) }}</option>
                 {% endfor %}
@@ -38,8 +40,8 @@
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            <label for="day">Date</label>
-            <select name="date" id="date" class="form-control">
+            <label for="time">time</label>
+            <select name="time" id="time" class="form-control">
                 {% for time in date.range('00:00', '24:00') %}
                     <option value="{{ time.format('H:i') }}">{{ time.format('H:i') }}</option>
                 {% endfor %}

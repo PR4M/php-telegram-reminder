@@ -2,6 +2,7 @@
 {% block content %}
     {% include 'reminder/_create.twig' %}
     <br>
+    {% if reminders.count %}
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -32,4 +33,7 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+        There's no reminder.
+    {% endif %}
 {% endblock %}
