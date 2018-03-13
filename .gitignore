@@ -19,3 +19,5 @@ vendor/
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 \.idea/
+
+\.env
