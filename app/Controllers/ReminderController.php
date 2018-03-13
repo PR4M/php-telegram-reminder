@@ -28,10 +28,22 @@ class ReminderController extends Controller
         $expression = $this->buildCronExpression($params);
 
         if (CronExpression::isValidExpression($expression)) {
-            //store
+            $this->createReminder($params, $expression);
         }
 
         return $response->withRedirect($this->c->router->pathFor('reminders.index'));
+    }
+
+    protected function createReminder($params, $expression)
+    {
+        Reminder::create([
+            'body' => $params->body ?: null,
+            'frequency' => $params->frequency,
+            'day' => $params->day ?: null,
+            'date' => $params->date ?: null,
+            'time' => $params->time,
+            'expression' => $expression
+        ]);
     }
 
     protected function buildCronExpression($params)
