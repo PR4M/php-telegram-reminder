@@ -28,6 +28,10 @@ class SendReminderEvent extends Event
     public function handle()
     {
         $this->client->request('GET', $this->buildRequestURL());
+
+        if ($this->reminder->run_once) {
+            $this->reminder->delete();
+        }
     }
 
     protected function buildRequestURL()
