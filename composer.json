@@ -1,7 +1,7 @@
 {
-    "name": "codecourse/slender",
-    "description": "A slender starter structure for Slim",
-    "keywords": ["framework", "slim", "codecourse"],
+    "name": "pramana/php-telegram-reminder",
+    "description": "A Telegram Reminder based on PHP 7",
+    "keywords": ["telegram", "php", "reminder"],
     "license": "MIT",
     "type": "project",
     "require": {
