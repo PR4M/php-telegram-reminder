@@ -26,12 +26,18 @@
                     <td>{{ reminder.time }}</td>
                     <td>{{ reminder.run_once ? 'yes' : 'no' }}</td>
                     <td>
-                        <a href="">Delete</a>
+                        <a href="" onclick="event.preventDefault(); document.getElementById('delete-{{ reminder.id }}').submit();">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        {% for reminder in reminders %}
+            <form action="{{ path_for('reminders.delete', { reminder: reminder.id }) }}" method="post" id="delete-{{ reminder.id }}">
+            </form>
+        {% endfor %}
+
     </div>
     {% else %}
         There's no reminder.

@@ -34,6 +34,12 @@ class ReminderController extends Controller
         return $response->withRedirect($this->c->router->pathFor('reminders.index'));
     }
 
+    public function delete(Request $request, Response $response, $args)
+    {
+        Reminder::find($args['reminder'])->delete();
+        return $response->withRedirect($this->c->router->pathFor('reminders.index'));
+    }
+
     protected function createReminder($params, $expression)
     {
         Reminder::create([
@@ -42,7 +48,8 @@ class ReminderController extends Controller
             'day' => $params->day ?: null,
             'date' => $params->date ?: null,
             'time' => $params->time,
-            'expression' => $expression
+            'expression' => $expression,
+            'run_once' => isset($params->run_once)
         ]);
     }
 
